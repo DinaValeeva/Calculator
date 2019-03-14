@@ -5,6 +5,7 @@ public class Calculator {
     private Scanner scanner = new Scanner(System.in);
     private double a;
     private double b;
+    private String c;
 
     public void readA(){
         System.out.println("Введите 'a'");
@@ -24,10 +25,40 @@ public class Calculator {
         }
     }
 
+    public void readOperations(){
+        System.out.println("Введите операцию");
+        try {
+            c = scanner.next();
+        } catch (InputMismatchException e) {
+            throw new NotNumberException("Нельзя вводить не операцию");
+        }
+    }
+
+
+    public void process(){
+        switch (c) {
+            case "+" : plus(); break;
+            case "-" : minus(); break;
+            case "/" : div(); break;
+            case "*" : umnozh(); break;
+
+            default:
+                throw new RuntimeException("Неизвестный оператор");
+
+        }
+    }
 
     public void div(){
-        if (b==0) throw new RuntimeException("Делить на 0 нельзя");
-        else System.out.println(a/b);
+        System.out.println(a/b);
+    }
+    public void plus(){
+        System.out.println(a+b);
+    }
+    public void minus(){
+        System.out.println(a-b);
+    }
+    public void umnozh(){
+        System.out.println(a*b);
     }
 
 
@@ -35,6 +66,8 @@ public class Calculator {
         Calculator calculator = new Calculator();
         calculator.readA();
         calculator.readB();
-        calculator.div();
+        calculator.readOperations();
+        calculator.process();
+
     }
 }
