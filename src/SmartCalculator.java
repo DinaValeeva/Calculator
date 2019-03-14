@@ -26,7 +26,16 @@ public class SmartCalculator {
 
         }
         while (!operations.isEmpty()) {
+
+            Operations operation = null;
+
+            String leftNumber = "";
+            String rightNumber = "";
+            String result = "";
+
+            row = row.replaceAll(leftNumber + operation.getValue() + rightNumber, result);
             process();
         }
+        System.out.println(row);
     }
 }
